@@ -1,5 +1,5 @@
 # nullclass-1P-2T
-this project is based on "Text Preprocessing using HF transformers.
+this project is based on "Text Preprocessing using HF transformers".
 
 
 The project has been proceeded in three steps:
