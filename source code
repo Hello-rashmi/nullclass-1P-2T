@@ -1,0 +1,23 @@
+!pip install transformers
+from transformers import CLIPTokenizer, CLIPTextModel
+import torch
+model_name = "openai/clip-vit-base-patch32"
+tokenizer = CLIPTokenizer.from_pretrained(model_name)
+model = CLIPTextModel.from_pretrained(model_name)
+
+#Sample text
+text = input("add your text")
+
+#step 1 - tokenization
+tokens = tokenizer.tokenize(text)
+print("Tokens",tokens)
+#step 2 - Encoding
+inputs = tokenizer(text,return_tensors = "pt")
+print("Token Ids:",inputs['input_ids'])
+#step 3 - Get Embeddings
+with torch.no_grad():
+  outputs = model(**inputs)
+  embeddings = outputs.last_hidden_state
+ 
+print("embedding shape:", embeddings.shape)
+print("first token embedding:",embeddings[0][0])
